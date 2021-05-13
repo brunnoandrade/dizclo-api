@@ -1,6 +1,6 @@
-import { Controller, Delete, Get, Post, Put } from '@nestjs/common';
+import { Controller, Delete, Get, Post, Put, Param, Body } from '@nestjs/common';
 
-// localhost:3000/users
+// localhost:3000/v1/users
 @Controller('v1/users')
 export class UserController {
     @Get()
@@ -8,18 +8,26 @@ export class UserController {
         return 'Obter os usuários';
     }
 
+    @Get(':document')
+    getById(@Param('document') document) {
+        return 'Obter os usuários' + document;
+    }
+
     @Post()
-    post() {
-        return 'Criar um usuário';
+    post(@Body() body) {
+        return body;
     }
 
-    @Put()
-    put() {
-        return 'Atualizar um usuário';
+    @Put(':document')
+    put(@Param('document') document, @Body() body) {
+        return {
+            user: document,
+            data: body
+        };
     }
 
-    @Delete()
-    delete() {
+    @Delete(':document')
+    delete(@Param('document') document) {
         return 'Remover um usuário';
     }
 }
