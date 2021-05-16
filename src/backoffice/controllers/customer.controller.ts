@@ -1,4 +1,4 @@
-import { Controller, Delete, Get, Post, Put, Param, Body, UseInterceptors } from '@nestjs/common';
+import { Controller, Delete, Get, Post, Put, Param, Body, UseInterceptors, HttpException, HttpStatus } from '@nestjs/common';
 import { ValidatorInterceptor } from 'src/interceptors/validator.interceptor';
 import { CreateCustomerContract } from '../contracts/customer.contracts';
 import { Result } from '../models/result.model';
@@ -31,13 +31,17 @@ export class CustomerController {
     @Post()
     @UseInterceptors(new ValidatorInterceptor(new CreateCustomerContract()))
     async post(@Body() model: CreateCustomerDto) {
-        const user = await this.accountService.create(
-            new User(model.document, model.password, true, [])
-        );
-        const customer = new Customer(model.name, model.document, model.email, null, null, null, null, user)
-        const res = await this.customerService.create(customer)
+        try {
+            const user = await this.accountService.create(
+                new User(model.document, model.password, true, [])
+            );
+            const customer = new Customer(model.name, model.document, model.email, null, null, null, null, user)
+            const res = await this.customerService.create(customer)
 
-        return new Result('Cliente criado com sucesso!', true, res, null)
+            return new Result('Cliente criado com sucesso!', true, res, null)
+        } catch (error) {
+            throw new HttpException(new Result('Não foi possível realizar o seu cadastro!', false, null, error), HttpStatus.BAD_REQUEST)
+        }        
     }
 
     @Put(':document')
