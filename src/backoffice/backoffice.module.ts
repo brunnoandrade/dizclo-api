@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
-import { UserController } from './controllers/user.controller';
+import { CustomerController } from './controllers/customer.controller';
 
 @Module({
-    controllers: [UserController]
+    controllers: [CustomerController]
 })
 export class BackofficeModule {}
