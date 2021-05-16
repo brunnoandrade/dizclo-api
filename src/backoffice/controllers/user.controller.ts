@@ -1,6 +1,6 @@
 import { Controller, Delete, Get, Post, Put, Param, Body } from '@nestjs/common';
-import { Result } from 'src/models/result.model';
-import { User } from 'src/models/user.model';
+import { Result } from '../models/result.model';
+import { User } from '../models/user.model';
 
 // localhost:3000/v1/users
 @Controller('v1/users')
