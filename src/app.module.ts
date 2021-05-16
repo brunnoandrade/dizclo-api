@@ -4,7 +4,7 @@ import { BackofficeModule } from './backoffice/backoffice.module';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb+srv://dizclouser:urq9aIOzjeQMRoFs@cluster0.zajxb.mongodb.net/myDbDizlo?retryWrites=true&w=majority'),
+    MongooseModule.forRoot('mongodb+srv://dizclouser:urq9aIOzjeQMRoFs@cluster0.zajxb.mongodb.net/dizclodb?retryWrites=true&w=majority'),
     BackofficeModule
   ],
   controllers: [],
