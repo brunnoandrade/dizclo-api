@@ -1,7 +1,9 @@
 import { Flunt } from 'src/utils/flunt';
 import { Contract } from './contract';
-import { User } from 'src/models/user.model';
+import { User } from '../models/user.model';
+import { Injectable } from '@nestjs/common';
 
+@Injectable()
 export class CreateUserContract implements Contract {
     errors: any[];
 
