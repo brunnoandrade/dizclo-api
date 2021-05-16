@@ -6,6 +6,8 @@ import { UserSchema } from './schemas/user.schema';
 
 import { CustomerController } from './controllers/customer.controller';
 
+import { AccountService } from './services/account.service';
+
 @Module({
     imports: [
         MongooseModule.forFeature([
@@ -20,6 +22,6 @@ import { CustomerController } from './controllers/customer.controller';
         ]),
     ],
     controllers: [CustomerController],
-
+    providers: [AccountService]
 })
 export class BackofficeModule {}
