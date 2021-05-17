@@ -1,7 +1,7 @@
 import { Flunt } from 'src/utils/flunt';
-import { Contract } from './contract';
+import { Contract } from '../contract';
 import { Injectable } from '@nestjs/common';
-import { CreateCustomerDto } from '../dtos/create-customer.dto';
+import { CreateCustomerDto } from '../../dtos/create-customer.dto';
 
 @Injectable()
 export class CreateCustomerContract implements Contract {
