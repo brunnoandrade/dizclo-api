@@ -2,13 +2,15 @@ import { Controller, Get, Post, Put, Param, Body, UseInterceptors, HttpException
 import { ValidatorInterceptor } from 'src/interceptors/validator.interceptor';
 
 import { CreateCustomerContract } from 'src/modules/backoffice/contracts/customer/create-customer.contract';
+import { UpdateCustomerContract } from '../contracts/customer/update-customer.contract';
 import { QueryContract } from 'src/modules/backoffice/contracts/query.contract';
 
 import { Result } from 'src/modules/backoffice/models/result.model';
 import { User } from 'src/modules/backoffice/models/user.model';
 import { Customer } from 'src/modules/backoffice/models/customer.model';
 
-import { CreateCustomerDto } from 'src/modules/backoffice/dtos/create-customer.dto';
+import { CreateCustomerDto } from 'src/modules/backoffice/dtos/customer/create-customer.dto';
+import { UpdateCustomerDto } from '../dtos/customer/update-customer.dto';
 import { QueryDto } from 'src/modules/backoffice/dtos/query.dto';
 
 import { CustomerService } from 'src/modules/backoffice/services/customer.service';
@@ -35,6 +37,17 @@ export class CustomerController {
             return new Result('Cliente criado com sucesso!', true, res, null)
         } catch (error) {
             throw new HttpException(new Result('Não foi possível realizar o seu cadastro!', false, null, error), HttpStatus.BAD_REQUEST)
+        }
+    }
+
+    @Put(':document')
+    @UseInterceptors(new ValidatorInterceptor(new UpdateCustomerContract()))
+    async update(@Param('document') document, @Body() model: UpdateCustomerDto) {
+        try {
+            await this.customerService.update(document, model);
+            return new Result(null, true, model, null);
+        } catch (error) {
+            throw new HttpException(new Result('Não foi possível atualizar seus dados', false, null, error), HttpStatus.BAD_REQUEST);
         }
     }
 
