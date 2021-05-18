@@ -55,6 +55,13 @@ export class CustomerService {
         return await this.model
             .find({}, 'name email document') //'-name'
             .sort('name') //'-name' decrescente
-            .exec() 
+            .exec();
+    }
+
+    async find(document): Promise<Customer[]> {
+        return await this.model
+            .find({ document }) // .find({ document }, 'name email document')
+            .populate('user', 'username')
+            .exec();
     }
 }
