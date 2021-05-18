@@ -1,13 +1,13 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 
-import { CustomerSchema } from './schemas/customer.schema';
-import { UserSchema } from './schemas/user.schema';
+import { CustomerSchema } from 'src/modules/backoffice/schemas/customer.schema';
+import { UserSchema } from 'src/modules/backoffice/schemas/user.schema';
 
-import { CustomerController } from './controllers/customer.controller';
+import { AccountService } from 'src/modules/backoffice/services/account.service';
+import { CustomerService } from 'src/modules/backoffice/services/customer.service';
 
-import { AccountService } from './services/account.service';
-import { CustomerService } from './services/customer.service';
+import { CustomerController } from 'src/modules/backoffice/controllers/customer.controller';
 
 @Module({
     imports: [

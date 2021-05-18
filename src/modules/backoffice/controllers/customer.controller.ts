@@ -1,18 +1,22 @@
 import { Controller, Delete, Get, Post, Put, Param, Body, UseInterceptors, HttpException, HttpStatus } from '@nestjs/common';
 import { ValidatorInterceptor } from 'src/interceptors/validator.interceptor';
-import { CreateCustomerContract } from '../contracts/customer/create-customer.contract';
-import { Result } from '../models/result.model';
-import { CreateCustomerDto } from '../dtos/create-customer.dto';
-import { AccountService } from '../services/account.service';
-import { User } from '../models/user.model';
-import { CustomerService } from '../services/customer.service';
-import { Customer } from '../models/customer.model';
-import { CreateAddressContract } from '../contracts/customer/create-address.contract';
-import { Address } from '../models/address.model';
-import { CreatePetContract } from '../contracts/customer/create-pet.contract';
-import { Pet } from '../models/pet.model';
-import { QueryDto } from '../dtos/query.dto';
-import { QueryContract } from '../contracts/query.contract';
+
+import { CreateCustomerContract } from 'src/modules/backoffice/contracts/customer/create-customer.contract';
+import { CreateAddressContract } from 'src/modules/backoffice/contracts/customer/create-address.contract';
+import { CreatePetContract } from 'src/modules/backoffice/contracts/customer/create-pet.contract';
+import { QueryContract } from 'src/modules/backoffice/contracts/query.contract';
+
+import { Result } from 'src/modules/backoffice/models/result.model';
+import { User } from 'src/modules/backoffice/models/user.model';
+import { Customer } from 'src/modules/backoffice/models/customer.model';
+import { Address } from 'src/modules/backoffice/models/address.model';
+import { Pet } from 'src/modules/backoffice/models/pet.model';
+
+import { CreateCustomerDto } from 'src/modules/backoffice/dtos/create-customer.dto';
+import { QueryDto } from 'src/modules/backoffice/dtos/query.dto';
+
+import { CustomerService } from 'src/modules/backoffice/services/customer.service';
+import { AccountService } from 'src/modules/backoffice/services/account.service';
 
 // localhost:3000/v1/customers
 @Controller('v1/customers')
