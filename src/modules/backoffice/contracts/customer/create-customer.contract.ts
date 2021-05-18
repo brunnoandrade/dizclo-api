@@ -1,13 +1,13 @@
-import { Flunt } from 'src/utils/flunt';
-import { Contract } from './contract';
-import { User } from '../models/user.model';
 import { Injectable } from '@nestjs/common';
+import { Flunt } from 'src/utils/flunt';
+import { Contract } from 'src/modules/backoffice/contracts/contract';
+import { CreateCustomerDto } from 'src/modules/backoffice/dtos/create-customer.dto';
 
 @Injectable()
-export class CreateUserContract implements Contract {
+export class CreateCustomerContract implements Contract {
     errors: any[];
 
-    validate(model: User): boolean {
+    validate(model: CreateCustomerDto): boolean {
         const flunt = new Flunt();
 
         flunt.hasMinLen(model.name, 5, 'Nome inválido');

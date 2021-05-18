@@ -1,8 +1,12 @@
 import { Module } from '@nestjs/common';
-import { BackofficeModule } from './backoffice/backoffice.module';
+import { MongooseModule } from '@nestjs/mongoose';
+import { BackofficeModule } from 'src/modules/backoffice/backoffice.module';
 
 @Module({
-  imports: [BackofficeModule],
+  imports: [
+    MongooseModule.forRoot('mongodb+srv://dizclouser:urq9aIOzjeQMRoFs@cluster0.zajxb.mongodb.net/dizclodb?retryWrites=true&w=majority'),
+    BackofficeModule
+  ],
   controllers: [],
   providers: [],
 })
