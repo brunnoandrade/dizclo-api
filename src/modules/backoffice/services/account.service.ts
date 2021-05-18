@@ -27,11 +27,16 @@ export class AccountService {
     }
 
     async authenticate(username, password): Promise<Customer> {
-        const customer = await this.customerModel
+        var customer = await this.customerModel
             .findOne({ document: username })
             .populate('user')
             .exec();
 
-        return customer;
+        const pass = await Md5.init(`${password}${process.env.SALT_KEY}`);
+        if (pass.toString() == customer.user.password.toString()) {
+            return customer;
+        } else {
+            return null;
+        }
     }
 }
