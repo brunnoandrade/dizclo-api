@@ -1,10 +1,10 @@
 import { Model } from 'mongoose';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Customer } from '../models/customer.model';
-import { Address } from '../models/address.model';
-import { Pet } from '../models/pet.model';
-import { QueryDto } from '../dtos/query.dto';
+import { Customer } from 'src/modules/backoffice/models/customer.model';
+import { Address } from 'src/modules/backoffice/models/address.model';
+import { Pet } from 'src/modules/backoffice/models/pet.model';
+import { QueryDto } from 'src/modules/backoffice/dtos/query.dto';
 
 @Injectable()
 export class CustomerService {

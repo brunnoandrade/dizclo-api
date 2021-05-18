@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Flunt } from 'src/utils/flunt';
-import { QueryDto } from '../dtos/query.dto';
-import { Contract } from './contract';
+import { QueryDto } from 'src/modules/backoffice/dtos/query.dto';
+import { Contract } from 'src/modules/backoffice/contracts/contract';
 
 @Injectable()
 export class QueryContract implements Contract
