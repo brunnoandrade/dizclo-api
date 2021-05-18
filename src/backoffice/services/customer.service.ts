@@ -43,7 +43,7 @@ export class CustomerService {
         }, options);
     }
 
-    async update(document: string, id: string, data: Pet): Promise<Customer> {
+    async updatePet(document: string, id: string, data: Pet): Promise<Customer> {
         return await this.model.findOneAndUpdate({ document, 'pets._id': id }, { // active: true
             $set: {
                 'pets.$': data,
