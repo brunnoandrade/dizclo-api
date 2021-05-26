@@ -1,6 +1,7 @@
 import { Model } from 'mongoose';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
+import { Md5 } from "md5-typescript";
 import { User } from 'src/modules/backoffice/models/user.model';
 import { Customer } from 'src/modules/backoffice/models/customer.model';
 

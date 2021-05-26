@@ -27,14 +27,19 @@
     "@nestjs/mongoose": "^7.2.4",
     "@nestjs/passport": "^7.1.5",
     "@nestjs/platform-express": "^7.6.15",
+    "@nestjs/swagger": "^4.8.0",
+    "cache-manager": "^3.4.3",
+    "compression": "^1.7.4",
     "guid-typescript": "^1.0.9",
+    "md5-typescript": "^1.0.5",
     "mongoose": "^5.12.9",
     "passport": "^0.4.1",
     "passport-http-bearer": "^1.0.1",
     "passport-jwt": "^4.0.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
-    "rxjs": "^6.6.6"
+    "rxjs": "^6.6.6",
+    "swagger-ui-express": "^4.1.6"
   },
   "devDependencies": {
     "@nestjs/cli": "^7.6.0",

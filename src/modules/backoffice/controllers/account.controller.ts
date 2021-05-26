@@ -21,6 +21,7 @@ export class AccountController {
     // Autenticar
     @Post('authenticate')
     async authenticate(@Body() model: AuthenticateDto): Promise<any> {
+
         const customer = await this.accountService.authenticate(model.username, model.password);
 
         // Caso não encontre o usuário
@@ -56,6 +57,7 @@ export class AccountController {
     async changePassword(@Req() request, @Body() model: ChangePasswordDto): Promise<any> {
         try {
             // TODO: Encriptar senha
+            
             await this.accountService.update(request.user.document, { password: model.newPassword });
             return new ResultDto('Sua senha foi alterada com sucesso!', true, null, null);
         } catch (error) {
