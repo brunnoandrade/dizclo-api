@@ -1,7 +1,9 @@
-import { Module } from '@nestjs/common';
+import { Module, CacheModule, HttpModule } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 import { JwtStrategy } from 'src/shared/strategies/jwt.strategy';
 
@@ -21,9 +23,11 @@ import { PetController } from 'src/modules/backoffice/controllers/pet.controller
 
 @Module({
     imports: [
+        HttpModule,
+        CacheModule.register(),
         PassportModule.register({ defaultStrategy: 'jwt' }),
         JwtModule.register({
-            secretOrPrivateKey: '#~Tp:}K7EFxkE;w#ZUNO-F#b<bmqXJM&7O}P9wakI-^N(ihHE*Ra{!XDk!*6)9-x4F.{?*9:<uduyJE)>20',
+            secretOrPrivateKey: process.env.SECRET_KEY,
             signOptions: {
                 expiresIn: 3600
             }
