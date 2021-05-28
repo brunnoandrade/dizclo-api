@@ -23,7 +23,8 @@ import { AccountService } from 'src/modules/backoffice/services/account.service'
 export class CustomerController {
     constructor(
         private readonly customerService: CustomerService,
-        private readonly accountService: AccountService) { }
+        private readonly accountService: AccountService
+    ) { }
 
     @Post()
     @UseInterceptors(new ValidatorInterceptor(new CreateCustomerContract()))
