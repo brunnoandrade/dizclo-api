@@ -40,4 +40,11 @@ export class AccountService {
             return null;
         }
     }
+
+    async findAll(): Promise<User[]> {
+        return await this.userModel
+            .find({}, 'username password active roles')
+            .sort('username')
+            .exec();
+    }
 }

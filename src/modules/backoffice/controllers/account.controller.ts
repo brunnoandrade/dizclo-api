@@ -1,4 +1,4 @@
-import { Controller, Get, UseGuards, Post, Req, UseInterceptors, Body, HttpException, HttpStatus } from "@nestjs/common";
+import { Controller, Get, UseGuards, Post, Req, UseInterceptors, Body, HttpException, HttpStatus, CacheInterceptor } from "@nestjs/common";
 import { JwtAuthGuard } from "src/shared/guards/auth.guard";
 
 import { AuthService } from "src/shared/services/auth.service";
@@ -17,6 +17,13 @@ export class AccountController {
         private accountService: AccountService,
         private authService: AuthService
     ) { }
+
+    @Get()
+    @UseInterceptors(CacheInterceptor)
+    async getAll() {
+        const users = await this.accountService.findAll();
+        return new ResultDto(null, true, users, null);
+    }
 
     // Autenticar
     @Post('authenticate')
