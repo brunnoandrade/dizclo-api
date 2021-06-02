@@ -7,14 +7,14 @@ import { UpdatePartnerContract } from 'src/modules/backoffice/contracts/partner/
 import { QueryContract } from 'src/modules/backoffice/contracts/query.contract';
 
 import { User } from 'src/modules/backoffice/models/user.model';
-import { Partner } from 'src/modules/backoffice/models/partner.model';
+import { Partner } from 'src/modules/backoffice/models/partner/partner.model';
 import { ResultDto } from "src/modules/backoffice/dtos/result.dto";
 
 import { CreatePartnerDto } from 'src/modules/backoffice/dtos/partner/create-partner.dto';
 import { UpdatePartnerDto } from 'src/modules/backoffice/dtos/partner/update-partner.dto';
 import { QueryDto } from 'src/modules/backoffice/dtos/query.dto';
 
-import { PartnerService } from 'src/modules/backoffice/services/partner.service';
+import { PartnerService } from 'src/modules/backoffice/services/partner/partner.service';
 import { AccountService } from 'src/modules/backoffice/services/account.service';
 
 @Controller('v1/partners')

@@ -1,4 +1,4 @@
-import { User } from "./user.model";
+import { User } from "src/modules/backoffice/models/user.model";
 
 export class Partner {
     constructor( 

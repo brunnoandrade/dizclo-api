@@ -38,6 +38,13 @@ export const PartnerSchema = new mongoose.Schema({
         type: String,
         trim: true,
     },
+    photos: [
+        {
+            url: {
+                type: String,
+            },
+        },
+    ],
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',

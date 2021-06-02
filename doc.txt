@@ -16,7 +16,7 @@
 - customersfollow (id_user, id_partner)
 
 - partners (name, avatar, stars, latitude, longitude)
-- partnerphotos (id_partner, url)
+- partnerphotos (id_partner, url) - OK
 - partnerviews (id_partner, rate)
 - partnerservices (id_partner, name, price)
 - partnertestmonials (id_partner, name, rate, body)

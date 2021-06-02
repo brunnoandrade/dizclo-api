@@ -13,14 +13,16 @@ import { UserSchema } from 'src/modules/backoffice/schemas/user.schema';
 
 import { AccountService } from 'src/modules/backoffice/services/account.service';
 import { CustomerService } from 'src/modules/backoffice/services/customer.service';
-import { PartnerService } from 'src/modules/backoffice/services/partner.service';
+import { PartnerService } from 'src/modules/backoffice/services/partner/partner.service';
+import { PartnerPhotosService } from 'src/modules/backoffice/services/partner/photos.service';
 import { AddressService } from 'src/modules/backoffice/services/address.service';
 import { PetService } from 'src/modules/backoffice/services/pet.service';
 import { AuthService } from 'src/shared/services/auth.service';
 
 import { AccountController } from 'src/modules/backoffice/controllers/account.controller';
 import { CustomerController } from 'src/modules/backoffice/controllers/customer.controller';
-import { PartnerController } from 'src/modules/backoffice/controllers/partner.controller';
+import { PartnerController } from 'src/modules/backoffice/controllers/partner/partner.controller';
+import { PartnerPhotosController } from 'src/modules/backoffice/controllers/partner/photos.controller';
 import { AddressController } from 'src/modules/backoffice/controllers/address.controller';
 import { PetController } from 'src/modules/backoffice/controllers/pet.controller';
 
@@ -52,7 +54,7 @@ import { PetController } from 'src/modules/backoffice/controllers/pet.controller
             ]
         ),
     ],
-    controllers: [AccountController, CustomerController, PartnerController, AddressController, PetController],
-    providers: [AccountService, CustomerService, PartnerService, AddressService, PetService, AuthService, JwtStrategy]
+    controllers: [AccountController, CustomerController, PartnerController, PartnerPhotosController, AddressController, PetController],
+    providers: [AccountService, CustomerService, PartnerService, PartnerPhotosService, AddressService, PetService, AuthService, JwtStrategy]
 })
 export class BackofficeModule {}
