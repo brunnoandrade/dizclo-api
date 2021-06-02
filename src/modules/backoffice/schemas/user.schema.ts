@@ -17,7 +17,7 @@ export const UserSchema = new mongoose.Schema({
     roles: [{
         type: String,
         required: true,
-        enum: ['user', 'admin'],
+        enum: ['user', 'partner', 'admin'],
         default: 'user'
     }],
     active: {
