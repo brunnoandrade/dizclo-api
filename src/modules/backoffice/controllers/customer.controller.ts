@@ -32,7 +32,7 @@ export class CustomerController {
         try {
             const password = await Md5.init(`${model.password}${process.env.SALT_KEY}`);
             const user = await this.accountService.create(new User(model.document, password, true, ['user']));
-            const customer = new Customer(model.name, model.document, model.email, [], null, null, null, user);
+            const customer = new Customer(model.name, model.document, model.email, null, null, null, user);
             await this.customerService.create(customer);
             return new ResultDto(null, true, model, null);
         } catch (error) {

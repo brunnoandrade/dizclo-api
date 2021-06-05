@@ -20,7 +20,7 @@ export class PartnerService {
 
     async findAll(): Promise<Partner[]> {
         return await this.model
-            .find({}, 'name username email photos')
+            .find({}, 'name username email photos views')
             .sort('name')
             .exec();
     }

@@ -1,4 +1,4 @@
-export class PartnerPhotos {
+export class PartnerPhoto {
     constructor( 
         public url: string
     ) {
