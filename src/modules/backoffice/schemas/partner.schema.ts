@@ -47,7 +47,20 @@ export const PartnerSchema = new mongoose.Schema({
     ],
     views: [
         {
-            url: {
+            rate: {
+                type: Number,
+            },
+        },
+    ],
+    testmonials: [
+        {
+            name: {
+                type: String,
+            },
+            rate: {
+                type: Number,
+            },
+            body: {
                 type: String,
             },
         },
