@@ -10,9 +10,9 @@ export class AuthService {
         private readonly jwtService: JwtService,
     ) { }
 
-    async createToken(document, email, image, roles: string[]) {
+    async createToken(username, email, image, roles: string[]) {
         const user: JwtPayload = {
-            document: document,
+            username: username,
             email: email,
             image: image,
             roles: roles

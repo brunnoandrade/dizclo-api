@@ -5,7 +5,7 @@ import { User } from "./user.model";
 export class Customer {
     constructor( 
         public name: string,
-        public document: string,
+        public username: string,
         public email: string,
         public billingAddress: Address,
         public shippingAddress: Address,

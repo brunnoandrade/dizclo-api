@@ -12,16 +12,16 @@ export class AddressService {
         private readonly httpService: HttpService
     ) { }
 
-    async create(document: string, data: Address, type: AddressType): Promise<Customer> {
+    async create(username: string, data: Address, type: AddressType): Promise<Customer> {
         const options = { upsert: true };
         if (type === AddressType.Billing) {
-            return await this.model.findOneAndUpdate({ document }, {
+            return await this.model.findOneAndUpdate({ username }, {
                 $set: {
                     billingAddress: data,
                 },
             }, options);
         } else {
-            return await this.model.findOneAndUpdate({ document }, {
+            return await this.model.findOneAndUpdate({ username }, {
                 $set: {
                     shippingAddress: data,
                 },

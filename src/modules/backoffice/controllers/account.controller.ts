@@ -40,7 +40,7 @@ export class AccountController {
             throw new HttpException(new ResultDto('Usuário inativo', false, null, null), HttpStatus.UNAUTHORIZED);
 
         // Gera o token
-        const token = await this.authService.createToken(customer.document, customer.email, '', customer.user.roles);
+        const token = await this.authService.createToken(customer.username, customer.email, '', customer.user.roles);
         return new ResultDto(null, true, token, null);
     }
 
@@ -51,7 +51,7 @@ export class AccountController {
             // TODO: Enviar E-mail com a senha
 
             const password = Guid.create().toString().substring(0, 8).replace('-', '');
-            await this.accountService.update(model.document, { password: password });
+            await this.accountService.update(model.username, { password: password });
             return new ResultDto('Uma nova senha foi enviada para seu E-mail', true, null, null);
         } catch (error) {
             throw new HttpException(new ResultDto('Não foi possível restaurar sua senha', false, null, error), HttpStatus.BAD_REQUEST);
@@ -65,7 +65,7 @@ export class AccountController {
         try {
             // TODO: Encriptar senha
             
-            await this.accountService.update(request.user.document, { password: model.newPassword });
+            await this.accountService.update(request.user.username, { password: model.newPassword });
             return new ResultDto('Sua senha foi alterada com sucesso!', true, null, null);
         } catch (error) {
             throw new HttpException(new ResultDto('Não foi possível alterar sua senha', false, null, error), HttpStatus.BAD_REQUEST);
@@ -76,7 +76,7 @@ export class AccountController {
     @Post('refresh')
     async refreshToken(@Req() request): Promise<any> {
         // Gera o token
-        const token = await this.authService.createToken(request.user.document, request.user.email, request.user.image, request.user.user.roles);
+        const token = await this.authService.createToken(request.user.username, request.user.email, request.user.image, request.user.user.roles);
         return new ResultDto(null, true, token, null);
     }
 }

@@ -31,8 +31,8 @@ export class CustomerController {
     async post(@Body() model: CreateCustomerDto) {
         try {
             const password = await Md5.init(`${model.password}${process.env.SALT_KEY}`);
-            const user = await this.accountService.create(new User(model.document, password, true, ['user']));
-            const customer = new Customer(model.name, model.document, model.email, null, null, null, user);
+            const user = await this.accountService.create(new User(model.username, password, true, ['user']));
+            const customer = new Customer(model.name, model.username, model.email, null, null, null, user);
             await this.customerService.create(customer);
             return new ResultDto(null, true, model, null);
         } catch (error) {
@@ -40,11 +40,11 @@ export class CustomerController {
         }
     }
 
-    @Put(':document')
+    @Put(':username')
     @UseInterceptors(new ValidatorInterceptor(new UpdateCustomerContract()))
-    async update(@Param('document') document, @Body() model: UpdateCustomerDto) {
+    async update(@Param('username') username, @Body() model: UpdateCustomerDto) {
         try {
-            await this.customerService.update(document, model);
+            await this.customerService.update(username, model);
             return new ResultDto(null, true, model, null);
         } catch (error) {
             throw new HttpException(new ResultDto('Não foi possível atualizar seus dados', false, null, error), HttpStatus.BAD_REQUEST);
@@ -58,9 +58,9 @@ export class CustomerController {
         return new ResultDto(null, true, customers, null);
     }
 
-    @Get(':document')
-    async get(@Param('document') document) {
-        const customer = await this.customerService.find(document);
+    @Get(':username')
+    async get(@Param('username') username) {
+        const customer = await this.customerService.find(username);
         return new ResultDto(null, true, customer, null);
     }
 
@@ -71,11 +71,11 @@ export class CustomerController {
         return new ResultDto(null, true, customers, null);
     }
 
-    @Post(':document/credit-cards')
+    @Post(':username/credit-cards')
     @UseInterceptors(new ValidatorInterceptor(new CreateCreditCardContract()))
-    async createBilling(@Param('document') document, @Body() model: CreditCard) {
+    async createBilling(@Param('username') username, @Body() model: CreditCard) {
         try {
-            await this.customerService.saveOrUpdateCreditCard(document, model);
+            await this.customerService.saveOrUpdateCreditCard(username, model);
             return new ResultDto(null, true, model, null);
         } catch (error) {
             throw new HttpException(new ResultDto('Não foi possível adicionar seu cartão de crédito', false, null, error), HttpStatus.BAD_REQUEST);

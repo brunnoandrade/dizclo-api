@@ -38,11 +38,11 @@ export class PartnerController {
         }
     }
 
-    @Put(':document')
+    @Put(':username')
     @UseInterceptors(new ValidatorInterceptor(new UpdatePartnerContract()))
-    async update(@Param('document') document, @Body() model: UpdatePartnerDto) {
+    async update(@Param('username') username, @Body() model: UpdatePartnerDto) {
         try {
-            await this.partnerService.update(document, model);
+            await this.partnerService.update(username, model);
             return new ResultDto(null, true, model, null);
         } catch (error) {
             throw new HttpException(new ResultDto('Não foi possível atualizar seus dados', false, null, error), HttpStatus.BAD_REQUEST);
@@ -56,9 +56,9 @@ export class PartnerController {
         return new ResultDto(null, true, partners, null);
     }
 
-    @Get(':document')
-    async get(@Param('document') document) {
-        const partner = await this.partnerService.find(document);
+    @Get(':username')
+    async get(@Param('username') username) {
+        const partner = await this.partnerService.find(username);
         return new ResultDto(null, true, partner, null);
     }
 

@@ -32,7 +32,7 @@ import { AddressController } from 'src/modules/backoffice/controllers/address.co
         CacheModule.register(),
         PassportModule.register({ defaultStrategy: 'jwt' }),
         JwtModule.register({
-            secretOrPrivateKey: process.env.SECRET_KEY,
+            secret: process.env.SECRET_KEY,
             signOptions: {
                 expiresIn: 3600
             }

@@ -6,7 +6,7 @@ export const CustomerSchema = new mongoose.Schema({
         required: true,
         trim: true,
     },
-    document: {
+    username: {
         type: String,
         required: true,
         trim: true,

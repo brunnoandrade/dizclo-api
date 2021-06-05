@@ -18,22 +18,22 @@ export class AddressController {
         private readonly service: AddressService
     ) { }
 
-    @Post(':document/billing')
+    @Post(':username/billing')
     @UseInterceptors(new ValidatorInterceptor(new CreateAddressContract()))
-    async addBillingAddress(@Param('document') document, @Body() model: Address) {
+    async addBillingAddress(@Param('username') username, @Body() model: Address) {
         try {
-            await this.service.create(document, model, AddressType.Billing);
+            await this.service.create(username, model, AddressType.Billing);
             return new ResultDto(null, true, model, null)
         } catch (error) {
             throw new HttpException(new ResultDto('Não foi possível adicionar seu endereço!', false, null, error), HttpStatus.BAD_REQUEST)
         }
     }
 
-    @Post(':document/shipping')
+    @Post(':username/shipping')
     @UseInterceptors(new ValidatorInterceptor(new CreateAddressContract()))
-    async addShippingAddress(@Param('document') document, @Body() model: Address) {
+    async addShippingAddress(@Param('username') username, @Body() model: Address) {
         try {
-            await this.service.create(document, model, AddressType.Shipping);
+            await this.service.create(username, model, AddressType.Shipping);
             return new ResultDto(null, true, model, null)
         } catch (error) {
             throw new HttpException(new ResultDto('Não foi possível adicionar seu endereço!', false, null, error), HttpStatus.BAD_REQUEST)

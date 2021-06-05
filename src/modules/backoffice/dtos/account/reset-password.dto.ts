@@ -1,6 +1,6 @@
 export class ResetPasswordDto {
     constructor(
-        public document: string,
+        public username: string,
     ) {
 
     }
