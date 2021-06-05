@@ -1,16 +1,16 @@
 import { Injectable } from '@nestjs/common';
 import { Flunt } from 'src/utils/flunt';
 import { Contract } from 'src/modules/backoffice/contracts/contract';
-import { PartnerPhoto } from 'src/modules/backoffice/models/partner/photo';
+import { PartnerView } from 'src/modules/backoffice/models/partner/view';
 
 @Injectable()
-export class CreatePartnerPhotoContract implements Contract {
+export class CreatePartnerViewContract implements Contract {
     errors: any[];
 
-    validate(model: PartnerPhoto): boolean {
+    validate(model: PartnerView): boolean {
         const flunt = new Flunt();
 
-        flunt.hasMinLen(model.url, 3, 'Url inválida');
+        flunt.isNotNull(model.rate, 'Rate inválido');
 
         this.errors = flunt.errors;
         return flunt.isValid();

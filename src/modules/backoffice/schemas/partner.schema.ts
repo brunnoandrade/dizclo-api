@@ -45,6 +45,13 @@ export const PartnerSchema = new mongoose.Schema({
             },
         },
     ],
+    views: [
+        {
+            url: {
+                type: String,
+            },
+        },
+    ],
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',

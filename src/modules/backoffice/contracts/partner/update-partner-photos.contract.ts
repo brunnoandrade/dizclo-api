@@ -4,7 +4,7 @@ import { Contract } from 'src/modules/backoffice/contracts/contract';
 import { PartnerPhoto } from 'src/modules/backoffice/models/partner/photo';
 
 @Injectable()
-export class CreatePartnerPhotoContract implements Contract {
+export class UpdatePartnerPhotoContract implements Contract {
     errors: any[];
 
     validate(model: PartnerPhoto): boolean {

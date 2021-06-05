@@ -30,7 +30,7 @@ export class PartnerController {
         try {
             const password = await Md5.init(`${model.password}${process.env.SALT_KEY}`);
             const user = await this.accountService.create(new User(model.username, password, true, ['partner']));
-            const partner = new Partner(model.name, model.username, model.email, null, null, null, null, user);
+            const partner = new Partner(model.name, model.username, model.email, null, null, null, null, [], [], user);
             await this.partnerService.create(partner);
             return new ResultDto(null, true, model, null);
         } catch (error) {

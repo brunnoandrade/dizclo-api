@@ -12,12 +12,12 @@
 - DEPOIMENTOS
 
 - customers
-- customersfavorites (id_user, id_partner)
+- customersfavorite (id_user, id_partner)
 - customersfollow (id_user, id_partner)
 
 - partners (name, avatar, stars, latitude, longitude)
-- partnerphotos (id_partner, url) - OK
-- partnerviews (id_partner, rate)
-- partnerservices (id_partner, name, price)
-- partnertestmonials (id_partner, name, rate, body)
-- partnersfollowers (id_partner, id_user)
+- partnerphoto (id_partner, url) - OK
+- partnerview (id_partner, rate)
+- partnerservice (id_partner, name, price)
+- partnertestmonial (id_partner, name, rate, body)
+- partnersfollower (id_partner, id_user)
