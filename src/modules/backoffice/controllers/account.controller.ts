@@ -12,6 +12,8 @@ import {
 } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/shared/guards/auth.guard';
 
+import { ValidatorInterceptor } from 'src/interceptors/validator.interceptor';
+
 import { AuthService } from 'src/shared/services/auth.service';
 import { AccountService } from 'src/modules/backoffice/services/account.service';
 
@@ -20,7 +22,10 @@ import { ResetPasswordDto } from 'src/modules/backoffice/dtos/account/reset-pass
 import { ChangePasswordDto } from 'src/modules/backoffice/dtos/account/change-password.dto';
 import { ResultDto } from 'src/modules/backoffice/dtos/result.dto';
 
+import { ChangePasswordAccountContract } from 'src/modules/backoffice/contracts/account/change-password-account.contract';
+
 import { Guid } from 'guid-typescript';
+import { Md5 } from 'md5-typescript';
 
 @Controller('v1/accounts')
 export class AccountController {
@@ -101,15 +106,19 @@ export class AccountController {
   // Alterar Senha
   @Post('change-password')
   @UseGuards(JwtAuthGuard)
+  @UseInterceptors(
+    new ValidatorInterceptor(new ChangePasswordAccountContract()),
+  )
   async changePassword(
     @Req() request,
     @Body() model: ChangePasswordDto,
   ): Promise<any> {
     try {
-      // TODO: Encriptar senha
-
+      const password = await Md5.init(
+        `${model.password}${process.env.SALT_KEY}`,
+      );
       await this.accountService.update(request.user.username, {
-        password: model.newPassword,
+        password,
       });
       return new ResultDto(
         'Sua senha foi alterada com sucesso!',
