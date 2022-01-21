@@ -12,6 +12,8 @@ import {
 } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/shared/guards/auth.guard';
 
+import { ValidatorInterceptor } from 'src/interceptors/validator.interceptor';
+
 import { AuthService } from 'src/shared/services/auth.service';
 import { AccountService } from 'src/modules/backoffice/services/account.service';
 
@@ -19,6 +21,8 @@ import { AuthenticateDto } from 'src/modules/backoffice/dtos/account/authenticat
 import { ResetPasswordDto } from 'src/modules/backoffice/dtos/account/reset-password.dto';
 import { ChangePasswordDto } from 'src/modules/backoffice/dtos/account/change-password.dto';
 import { ResultDto } from 'src/modules/backoffice/dtos/result.dto';
+
+import { ChangePasswordAccountContract } from 'src/modules/backoffice/contracts/account/change-password-account.contract';
 
 import { Guid } from 'guid-typescript';
 import { Md5 } from 'md5-typescript';
@@ -102,6 +106,9 @@ export class AccountController {
   // Alterar Senha
   @Post('change-password')
   @UseGuards(JwtAuthGuard)
+  @UseInterceptors(
+    new ValidatorInterceptor(new ChangePasswordAccountContract()),
+  )
   async changePassword(
     @Req() request,
     @Body() model: ChangePasswordDto,
