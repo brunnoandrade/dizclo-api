@@ -21,6 +21,7 @@ import { ChangePasswordDto } from 'src/modules/backoffice/dtos/account/change-pa
 import { ResultDto } from 'src/modules/backoffice/dtos/result.dto';
 
 import { Guid } from 'guid-typescript';
+import { Md5 } from 'md5-typescript';
 
 @Controller('v1/accounts')
 export class AccountController {
@@ -106,10 +107,11 @@ export class AccountController {
     @Body() model: ChangePasswordDto,
   ): Promise<any> {
     try {
-      // TODO: Encriptar senha
-
+      const password = await Md5.init(
+        `${model.password}${process.env.SALT_KEY}`,
+      );
       await this.accountService.update(request.user.username, {
-        password: model.newPassword,
+        password,
       });
       return new ResultDto(
         'Sua senha foi alterada com sucesso!',
