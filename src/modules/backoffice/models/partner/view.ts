@@ -1,7 +1,3 @@
 export class PartnerView {
-    constructor( 
-        public rate: number
-    ) {
-       
-    }
+  constructor(public rate: number) {}
 }

@@ -1,7 +1,3 @@
 export class UpdateCustomerDto {
-    constructor(
-        public name: string,
-    ) {
-
-    }
+  constructor(public name: string) {}
 }

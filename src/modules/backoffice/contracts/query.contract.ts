@@ -4,20 +4,21 @@ import { QueryDto } from 'src/modules/backoffice/dtos/query.dto';
 import { Contract } from 'src/modules/backoffice/contracts/contract';
 
 @Injectable()
-export class QueryContract implements Contract
- {
-    errors: any[];
+export class QueryContract implements Contract {
+  errors: any[];
 
-    validate(model: QueryDto): boolean {
-        const flunt = new Flunt
-        ();
+  validate(model: QueryDto): boolean {
+    const flunt = new Flunt();
 
-        if (!model.query)
-            model.query = {};
+    if (!model.query) model.query = {};
 
-        flunt.isGreaterThan(model.take, 1000, 'Sua query não pode retornar mais que 1000 registros');
+    flunt.isGreaterThan(
+      model.take,
+      1000,
+      'Sua query não pode retornar mais que 1000 registros',
+    );
 
-        this.errors = flunt.errors;
-        return flunt.isValid();
-    }
+    this.errors = flunt.errors;
+    return flunt.isValid();
+  }
 }

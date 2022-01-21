@@ -5,14 +5,14 @@ import { UpdateCustomerDto } from 'src/modules/backoffice/dtos/customer/update-c
 
 @Injectable()
 export class UpdateCustomerContract implements Contract {
-    errors: any[];
+  errors: any[];
 
-    validate(model: UpdateCustomerDto): boolean {
-        const flunt = new Flunt();
+  validate(model: UpdateCustomerDto): boolean {
+    const flunt = new Flunt();
 
-        flunt.hasMinLen(model.name, 5, 'Nome inválido');
+    flunt.hasMinLen(model.name, 5, 'Nome inválido');
 
-        this.errors = flunt.errors;
-        return flunt.isValid();
-    }
+    this.errors = flunt.errors;
+    return flunt.isValid();
+  }
 }

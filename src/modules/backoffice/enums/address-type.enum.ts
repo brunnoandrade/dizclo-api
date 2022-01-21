@@ -1,4 +1,4 @@
 export enum AddressType {
-    Billing = 1,
-    Shipping = 2
+  Billing = 1,
+  Shipping = 2,
 }

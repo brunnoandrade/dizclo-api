@@ -8,51 +8,56 @@ import { UpdateCustomerDto } from 'src/modules/backoffice/dtos/customer/update-c
 
 @Injectable()
 export class CustomerService {
-    constructor(@InjectModel('Customer') private readonly model: Model<Customer>) {}
+  constructor(
+    @InjectModel('Customer') private readonly model: Model<Customer>,
+  ) {}
 
-    async create(data: Customer): Promise<Customer> {
-        const customer = new this.model(data);
-        return await customer.save();
-    }
+  async create(data: Customer): Promise<Customer> {
+    const customer = new this.model(data);
+    return await customer.save();
+  }
 
-    async update(username: string, data: UpdateCustomerDto): Promise<Customer> {
-        return await this.model.findOneAndUpdate({ username }, data);
-    }
+  async update(username: string, data: UpdateCustomerDto): Promise<Customer> {
+    return await this.model.findOneAndUpdate({ username }, data);
+  }
 
-    async findAll(): Promise<Customer[]> {
-        return await this.model
-            .find({}, 'name email username') //'-name'
-            .sort('name') //'-name' decrescente
-            .exec();
-    }
+  async findAll(): Promise<Customer[]> {
+    return await this.model
+      .find({}, 'name email username') //'-name'
+      .sort('name') //'-name' decrescente
+      .exec();
+  }
 
-    async find(username): Promise<Customer[]> {
-        return await this.model
-            .find({ username }) // .find({ username }, 'name email username')
-            .populate('user', 'username')
-            .exec();
-    }
+  async find(username): Promise<Customer[]> {
+    return await this.model
+      .find({ username }) // .find({ username }, 'name email username')
+      .populate('user', 'username')
+      .exec();
+  }
 
-    async query(model: QueryDto): Promise<Customer[]> {
-        return await this.model
-            .find(
-                model.query,
-                model.fields,
-                {
-                    skip: model.skip,
-                    limit: model.take
-                })
-            .sort(model.sort)
-            .exec();
-    }
+  async query(model: QueryDto): Promise<Customer[]> {
+    return await this.model
+      .find(model.query, model.fields, {
+        skip: model.skip,
+        limit: model.take,
+      })
+      .sort(model.sort)
+      .exec();
+  }
 
-    async saveOrUpdateCreditCard(username: string, data: CreditCard): Promise<Customer> {
-        const options = { upsert: true };
-        return await this.model.findOneAndUpdate({ username }, {
-            $set: {
-                card: data,
-            },
-        }, options);
-    }
-    
+  async saveOrUpdateCreditCard(
+    username: string,
+    data: CreditCard,
+  ): Promise<Customer> {
+    const options = { upsert: true };
+    return await this.model.findOneAndUpdate(
+      { username },
+      {
+        $set: {
+          card: data,
+        },
+      },
+      options,
+    );
+  }
 }

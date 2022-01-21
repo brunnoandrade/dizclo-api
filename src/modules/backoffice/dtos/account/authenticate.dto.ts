@@ -1,8 +1,3 @@
 export class AuthenticateDto {
-    constructor(
-        public username: string,
-        public password: string,
-    ) {
-
-    }
+  constructor(public username: string, public password: string) {}
 }

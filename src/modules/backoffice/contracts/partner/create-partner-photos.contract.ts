@@ -5,14 +5,14 @@ import { PartnerPhoto } from 'src/modules/backoffice/models/partner/photo';
 
 @Injectable()
 export class CreatePartnerPhotoContract implements Contract {
-    errors: any[];
+  errors: any[];
 
-    validate(model: PartnerPhoto): boolean {
-        const flunt = new Flunt();
+  validate(model: PartnerPhoto): boolean {
+    const flunt = new Flunt();
 
-        flunt.hasMinLen(model.url, 3, 'Url inválida');
+    flunt.hasMinLen(model.url, 3, 'Url inválida');
 
-        this.errors = flunt.errors;
-        return flunt.isValid();
-    }
+    this.errors = flunt.errors;
+    return flunt.isValid();
+  }
 }

@@ -1,8 +1,3 @@
 export class ChangePasswordDto {
-    constructor(
-        public password: string,
-        public newPassword: string,
-    ) {
-
-    }
+  constructor(public password: string, public newPassword: string) {}
 }

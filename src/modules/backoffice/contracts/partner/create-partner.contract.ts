@@ -5,17 +5,17 @@ import { CreatePartnerDto } from 'src/modules/backoffice/dtos/partner/create-par
 
 @Injectable()
 export class CreatePartnerContract implements Contract {
-    errors: any[];
+  errors: any[];
 
-    validate(model: CreatePartnerDto): boolean {
-        const flunt = new Flunt();
+  validate(model: CreatePartnerDto): boolean {
+    const flunt = new Flunt();
 
-        flunt.hasMinLen(model.name, 5, 'Nome inválido');
-        flunt.hasMinLen(model.username, 3, 'Usuário inválido');
-        flunt.isEmail(model.email, 'E-mail inválido');
-        flunt.hasMinLen(model.password, 6, 'Senha inválida');
+    flunt.hasMinLen(model.name, 5, 'Nome inválido');
+    flunt.hasMinLen(model.username, 3, 'Usuário inválido');
+    flunt.isEmail(model.email, 'E-mail inválido');
+    flunt.hasMinLen(model.password, 6, 'Senha inválida');
 
-        this.errors = flunt.errors;
-        return flunt.isValid();
-    }
+    this.errors = flunt.errors;
+    return flunt.isValid();
+  }
 }

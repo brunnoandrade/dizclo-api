@@ -127,13 +127,14 @@ export class AccountController {
 
   // Refresh Token
   @Post('refresh')
+  @UseGuards(JwtAuthGuard)
   async refreshToken(@Req() request): Promise<any> {
     // Gera o token
     const token = await this.authService.createToken(
       request.user.username,
       request.user.email,
       request.user.image,
-      request.user.user.roles,
+      request.user.roles,
     );
     return new ResultDto(null, true, token, null);
   }
