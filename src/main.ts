@@ -6,7 +6,7 @@ import * as compression from 'compression';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
-    logger: new CustomLogger()
+    logger: new CustomLogger(),
   });
   app.use(compression());
 

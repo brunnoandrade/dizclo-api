@@ -5,16 +5,20 @@ import { CreditCard } from 'src/modules/backoffice/models/credit-card.model';
 
 @Injectable()
 export class CreateCreditCardContract implements Contract {
-    errors: any[];
+  errors: any[];
 
-    validate(model: CreditCard): boolean {
-        const flunt = new Flunt();
+  validate(model: CreditCard): boolean {
+    const flunt = new Flunt();
 
-        flunt.hasMinLen(model.holder, 5, 'Nome no cartão inválido');
-        flunt.isFixedLen(model.number, 16, 'Número do cartão inválido');
-        flunt.isFixedLen(model.expiration, 4, 'Data de expiração do cartão inválida');
+    flunt.hasMinLen(model.holder, 5, 'Nome no cartão inválido');
+    flunt.isFixedLen(model.number, 16, 'Número do cartão inválido');
+    flunt.isFixedLen(
+      model.expiration,
+      4,
+      'Data de expiração do cartão inválida',
+    );
 
-        this.errors = flunt.errors;
-        return flunt.isValid();
-    }
+    this.errors = flunt.errors;
+    return flunt.isValid();
+  }
 }

@@ -5,14 +5,14 @@ import { PartnerTestmonial } from 'src/modules/backoffice/models/partner/testmon
 
 @Injectable()
 export class CreatePartnerTestmonialContract implements Contract {
-    errors: any[];
+  errors: any[];
 
-    validate(model: PartnerTestmonial): boolean {
-        const flunt = new Flunt();
+  validate(model: PartnerTestmonial): boolean {
+    const flunt = new Flunt();
 
-        flunt.isNotNull(model.rate, 'Rate inválido');
+    flunt.isNotNull(model.rate, 'Rate inválido');
 
-        this.errors = flunt.errors;
-        return flunt.isValid();
-    }
+    this.errors = flunt.errors;
+    return flunt.isValid();
+  }
 }

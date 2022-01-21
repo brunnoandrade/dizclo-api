@@ -27,34 +27,48 @@ import { PartnerViewController } from 'src/modules/backoffice/controllers/partne
 import { AddressController } from 'src/modules/backoffice/controllers/address.controller';
 
 @Module({
-    imports: [
-        HttpModule,
-        CacheModule.register(),
-        PassportModule.register({ defaultStrategy: 'jwt' }),
-        JwtModule.register({
-            secret: process.env.SECRET_KEY,
-            signOptions: {
-                expiresIn: 3600
-            }
-        }),
-        MongooseModule.forFeature(
-            [
-                {
-                    name: 'Customer',
-                    schema: CustomerSchema,
-                },
-                {
-                    name: 'Partner',
-                    schema: PartnerSchema,
-                },
-                {
-                    name: 'User',
-                    schema: UserSchema,
-                },
-            ]
-        ),
-    ],
-    controllers: [AccountController, CustomerController, PartnerController, PartnerPhotoController, PartnerViewController, AddressController],
-    providers: [AccountService, CustomerService, PartnerService, PartnerPhotoService, PartnerViewService, AddressService, AuthService, JwtStrategy]
+  imports: [
+    HttpModule,
+    CacheModule.register(),
+    PassportModule.register({ defaultStrategy: 'jwt' }),
+    JwtModule.register({
+      secret: process.env.SECRET_KEY,
+      signOptions: {
+        expiresIn: 3600,
+      },
+    }),
+    MongooseModule.forFeature([
+      {
+        name: 'Customer',
+        schema: CustomerSchema,
+      },
+      {
+        name: 'Partner',
+        schema: PartnerSchema,
+      },
+      {
+        name: 'User',
+        schema: UserSchema,
+      },
+    ]),
+  ],
+  controllers: [
+    AccountController,
+    CustomerController,
+    PartnerController,
+    PartnerPhotoController,
+    PartnerViewController,
+    AddressController,
+  ],
+  providers: [
+    AccountService,
+    CustomerService,
+    PartnerService,
+    PartnerPhotoService,
+    PartnerViewService,
+    AddressService,
+    AuthService,
+    JwtStrategy,
+  ],
 })
 export class BackofficeModule {}

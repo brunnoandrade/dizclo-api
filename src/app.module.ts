@@ -9,9 +9,10 @@ import { ConfigService } from 'src/config/config.service';
     ConfigModule,
     MongooseModule.forRootAsync({
       inject: [ConfigService],
-      useFactory: async (configService: ConfigService) => configService.getMongoConfig(),
+      useFactory: async (configService: ConfigService) =>
+        configService.getMongoConfig(),
     }),
-    BackofficeModule
+    BackofficeModule,
   ],
   controllers: [],
   providers: [],

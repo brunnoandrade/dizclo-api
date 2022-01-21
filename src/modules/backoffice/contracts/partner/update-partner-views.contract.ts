@@ -5,14 +5,14 @@ import { PartnerView } from 'src/modules/backoffice/models/partner/view';
 
 @Injectable()
 export class UpdatePartnerViewContract implements Contract {
-    errors: any[];
+  errors: any[];
 
-    validate(model: PartnerView): boolean {
-        const flunt = new Flunt();
+  validate(model: PartnerView): boolean {
+    const flunt = new Flunt();
 
-        flunt.isNotNull(model.rate, 'Rate inválido');
+    flunt.isNotNull(model.rate, 'Rate inválido');
 
-        this.errors = flunt.errors;
-        return flunt.isValid();
-    }
+    this.errors = flunt.errors;
+    return flunt.isValid();
+  }
 }

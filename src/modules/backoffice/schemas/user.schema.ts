@@ -1,28 +1,33 @@
 import * as mongoose from 'mongoose';
 
-export const UserSchema = new mongoose.Schema({
+export const UserSchema = new mongoose.Schema(
+  {
     username: {
-        type: String,
-        required: true,
-        trim: true,
-        index: {
-            unique: true,
-        },
+      type: String,
+      required: true,
+      trim: true,
+      index: {
+        unique: true,
+      },
     },
     password: {
-        type: String,
-        required: true,
-        trim: true,
+      type: String,
+      required: true,
+      trim: true,
     },
-    roles: [{
+    roles: [
+      {
         type: String,
         required: true,
         enum: ['user', 'partner', 'admin'],
-        default: 'user'
-    }],
+        default: 'user',
+      },
+    ],
     active: {
-        type: Boolean,
-        required: true,
-        default: true,
+      type: Boolean,
+      required: true,
+      default: true,
     },
-}, { timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' } });
+  },
+  { timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' } },
+);

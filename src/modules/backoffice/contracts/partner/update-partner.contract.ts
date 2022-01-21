@@ -5,19 +5,19 @@ import { UpdatePartnerDto } from 'src/modules/backoffice/dtos/partner/update-par
 
 @Injectable()
 export class UpdatePartnerContract implements Contract {
-    errors: any[];
+  errors: any[];
 
-    validate(model: UpdatePartnerDto): boolean {
-        const flunt = new Flunt();
+  validate(model: UpdatePartnerDto): boolean {
+    const flunt = new Flunt();
 
-        flunt.hasMinLen(model.name, 5, 'Nome inválido');
-        flunt.hasMinLen(model.username, 3, 'Usuário inválido');
-        flunt.isEmail(model.email, 'E-mail inválido');
-        flunt.hasMinLen(model.avatar, 1, 'Avatar inválido');
-        flunt.hasMinLen(model.latitude, 3, 'Latitude inválida');
-        flunt.hasMinLen(model.longitude, 3, 'Longitude inválida');
+    flunt.hasMinLen(model.name, 5, 'Nome inválido');
+    flunt.hasMinLen(model.username, 3, 'Usuário inválido');
+    flunt.isEmail(model.email, 'E-mail inválido');
+    flunt.hasMinLen(model.avatar, 1, 'Avatar inválido');
+    flunt.hasMinLen(model.latitude, 3, 'Latitude inválida');
+    flunt.hasMinLen(model.longitude, 3, 'Longitude inválida');
 
-        this.errors = flunt.errors;
-        return flunt.isValid();
-    }
+    this.errors = flunt.errors;
+    return flunt.isValid();
+  }
 }
