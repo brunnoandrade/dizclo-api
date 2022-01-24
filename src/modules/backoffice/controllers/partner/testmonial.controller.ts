@@ -23,16 +23,16 @@ import { PartnerTestmonialService } from 'src/modules/backoffice/services/partne
 export class PartnerTestmonialController {
   constructor(private readonly service: PartnerTestmonialService) {}
 
-  @Post(':username')
+  @Post(':userName')
   @UseInterceptors(
     new ValidatorInterceptor(new CreatePartnerTestmonialContract()),
   )
   async createPet(
-    @Param('username') username,
+    @Param('userName') userName,
     @Body() model: PartnerTestmonial,
   ) {
     try {
-      await this.service.create(username, model);
+      await this.service.create(userName, model);
       return new ResultDto(null, true, model, null);
     } catch (error) {
       throw new HttpException(
@@ -42,17 +42,17 @@ export class PartnerTestmonialController {
     }
   }
 
-  @Put(':username/:id')
+  @Put(':userName/:id')
   @UseInterceptors(
     new ValidatorInterceptor(new UpdatePartnerTestmonialContract()),
   )
   async updatePet(
-    @Param('username') username,
+    @Param('userName') userName,
     @Param('id') id,
     @Body() model: PartnerTestmonial,
   ) {
     try {
-      await this.service.update(username, id, model);
+      await this.service.update(userName, id, model);
       return new ResultDto(null, true, model, null);
     } catch (error) {
       throw new HttpException(

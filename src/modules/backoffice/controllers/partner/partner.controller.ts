@@ -43,11 +43,11 @@ export class PartnerController {
       //   `${model.password}${process.env.SALT_KEY}`,
       // );
       // const user = await this.accountService.create(
-      //   new User(model.username, password, true, ['partner']),
+      //   new User(model.userName, password, true, ['partner']),
       // );
       // const partner = new Partner(
       //   model.name,
-      //   model.username,
+      //   model.userName,
       //   model.email,
       //   null,
       //   null,
@@ -72,11 +72,11 @@ export class PartnerController {
     }
   }
 
-  @Put(':username')
+  @Put(':userName')
   @UseInterceptors(new ValidatorInterceptor(new UpdatePartnerContract()))
-  async update(@Param('username') username, @Body() model: UpdatePartnerDto) {
+  async update(@Param('userName') userName, @Body() model: UpdatePartnerDto) {
     try {
-      await this.partnerService.update(username, model);
+      await this.partnerService.update(userName, model);
       return new ResultDto(null, true, model, null);
     } catch (error) {
       throw new HttpException(
@@ -98,9 +98,9 @@ export class PartnerController {
     return new ResultDto(null, true, partners, null);
   }
 
-  @Get(':username')
-  async get(@Param('username') username) {
-    const partner = await this.partnerService.find(username);
+  @Get(':userName')
+  async get(@Param('userName') userName) {
+    const partner = await this.partnerService.find(userName);
     return new ResultDto(null, true, partner, null);
   }
 

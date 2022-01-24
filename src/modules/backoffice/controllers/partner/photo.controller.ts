@@ -23,11 +23,11 @@ import { PartnerPhotoService } from 'src/modules/backoffice/services/partner/pho
 export class PartnerPhotoController {
   constructor(private readonly service: PartnerPhotoService) {}
 
-  @Post(':username')
+  @Post(':userName')
   @UseInterceptors(new ValidatorInterceptor(new CreatePartnerPhotoContract()))
-  async createPet(@Param('username') username, @Body() model: PartnerPhoto) {
+  async createPet(@Param('userName') userName, @Body() model: PartnerPhoto) {
     try {
-      await this.service.create(username, model);
+      await this.service.create(userName, model);
       return new ResultDto(null, true, model, null);
     } catch (error) {
       throw new HttpException(
@@ -37,15 +37,15 @@ export class PartnerPhotoController {
     }
   }
 
-  @Put(':username/:id')
+  @Put(':userName/:id')
   @UseInterceptors(new ValidatorInterceptor(new UpdatePartnerPhotoContract()))
   async updatePet(
-    @Param('username') username,
+    @Param('userName') userName,
     @Param('id') id,
     @Body() model: PartnerPhoto,
   ) {
     try {
-      await this.service.update(username, id, model);
+      await this.service.update(userName, id, model);
       return new ResultDto(null, true, model, null);
     } catch (error) {
       throw new HttpException(

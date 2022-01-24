@@ -1,3 +1,3 @@
 export class ResetPasswordDto {
-  constructor(public username: string) {}
+  constructor(public userName: string) {}
 }

@@ -24,11 +24,11 @@ import { AddressType } from 'src/modules/backoffice/enums/address-type.enum';
 export class AddressController {
   constructor(private readonly service: AddressService) {}
 
-  @Post(':username/billing')
+  @Post(':userName/billing')
   @UseInterceptors(new ValidatorInterceptor(new CreateAddressContract()))
-  async addBillingAddress(@Param('username') username, @Body() model: Address) {
+  async addBillingAddress(@Param('userName') userName, @Body() model: Address) {
     try {
-      await this.service.create(username, model, AddressType.Billing);
+      await this.service.create(userName, model, AddressType.Billing);
       return new ResultDto(null, true, model, null);
     } catch (error) {
       throw new HttpException(
@@ -43,14 +43,14 @@ export class AddressController {
     }
   }
 
-  @Post(':username/shipping')
+  @Post(':userName/shipping')
   @UseInterceptors(new ValidatorInterceptor(new CreateAddressContract()))
   async addShippingAddress(
-    @Param('username') username,
+    @Param('userName') userName,
     @Body() model: Address,
   ) {
     try {
-      await this.service.create(username, model, AddressType.Shipping);
+      await this.service.create(userName, model, AddressType.Shipping);
       return new ResultDto(null, true, model, null);
     } catch (error) {
       throw new HttpException(

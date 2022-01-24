@@ -8,10 +8,10 @@ import { PartnerTestmonial } from 'src/modules/backoffice/models/partner/testmon
 export class PartnerTestmonialService {
   constructor(@InjectModel('Partner') private readonly model: Model<Partner>) {}
 
-  async create(username: string, data: PartnerTestmonial): Promise<Partner> {
+  async create(userName: string, data: PartnerTestmonial): Promise<Partner> {
     const options = { upsert: true, new: true };
     return await this.model.findOneAndUpdate(
-      { username },
+      { userName },
       {
         $push: {
           testmonials: data,
@@ -22,12 +22,12 @@ export class PartnerTestmonialService {
   }
 
   async update(
-    username: string,
+    userName: string,
     id: string,
     data: PartnerTestmonial,
   ): Promise<Partner> {
     return await this.model.findOneAndUpdate(
-      { username, 'testmonials._id': id },
+      { userName, 'testmonials._id': id },
       {
         // active: true
         $set: {

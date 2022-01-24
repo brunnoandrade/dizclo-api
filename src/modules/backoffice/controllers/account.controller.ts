@@ -45,7 +45,7 @@ export class AccountController {
   @Post('authenticate')
   async authenticate(@Body() model: AuthenticateDto): Promise<any> {
     const customer = await this.accountService.authenticate(
-      model.username,
+      model.userName,
       model.password,
     );
 
@@ -83,7 +83,7 @@ export class AccountController {
         .toString()
         .substring(0, 8)
         .replace('-', '');
-      await this.accountService.update(model.username, { password: password });
+      await this.accountService.update(model.userName, { password: password });
       return new ResultDto(
         'Uma nova senha foi enviada para seu E-mail',
         true,
@@ -117,7 +117,7 @@ export class AccountController {
       const password = await Md5.init(
         `${model.password}${process.env.SALT_KEY}`,
       );
-      await this.accountService.update(request.user.username, {
+      await this.accountService.update(request.user.userName, {
         password,
       });
       return new ResultDto(
@@ -140,7 +140,7 @@ export class AccountController {
   async refreshToken(@Req() request): Promise<any> {
     // Gera o token
     const token = await this.authService.createToken(
-      request.user.username,
+      request.user.userName,
       request.user.email,
       request.user.image,
       request.user.roles,

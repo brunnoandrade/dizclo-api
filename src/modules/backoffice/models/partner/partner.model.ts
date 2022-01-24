@@ -5,7 +5,7 @@ import { PartnerView } from 'src/modules/backoffice/models/partner/view';
 export class Partner {
   constructor(
     public name: string,
-    public username: string,
+    public userName: string,
     public email: string,
     public avatar: string,
     public stars: number,

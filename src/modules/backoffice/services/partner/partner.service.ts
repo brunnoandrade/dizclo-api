@@ -14,21 +14,21 @@ export class PartnerService {
     return await partner.save();
   }
 
-  async update(username: string, data: UpdatePartnerDto): Promise<Partner> {
-    return await this.model.findOneAndUpdate({ username }, data);
+  async update(userName: string, data: UpdatePartnerDto): Promise<Partner> {
+    return await this.model.findOneAndUpdate({ userName }, data);
   }
 
   async findAll(): Promise<Partner[]> {
     return await this.model
-      .find({}, 'name username email photos views')
+      .find({}, 'name userName email photos views')
       .sort('name')
       .exec();
   }
 
-  async find(username): Promise<Partner[]> {
+  async find(userName): Promise<Partner[]> {
     return await this.model
-      .find({ username })
-      .populate('user', 'username')
+      .find({ userName })
+      .populate('user', 'userName')
       .exec();
   }
 

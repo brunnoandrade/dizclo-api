@@ -17,8 +17,8 @@ export class CustomerService {
     return await customer.save();
   }
 
-  async update(username: string, data: UpdateCustomerDto): Promise<Customer> {
-    return await this.model.findOneAndUpdate({ username }, data);
+  async update(userName: string, data: UpdateCustomerDto): Promise<Customer> {
+    return await this.model.findOneAndUpdate({ userName }, data);
   }
 
   async findAll(): Promise<Customer[]> {
@@ -28,10 +28,10 @@ export class CustomerService {
       .exec();
   }
 
-  async find(username): Promise<Customer[]> {
+  async find(userName): Promise<Customer[]> {
     return await this.model
-      .find({ username }, '-__v') // .find({ username }, 'name email username')
-      .populate('user', 'username')
+      .find({ userName }, '-__v') // .find({ userName }, 'name email userName')
+      .populate('user', 'userName')
       .exec();
   }
 
@@ -46,12 +46,12 @@ export class CustomerService {
   }
 
   async saveOrUpdateCreditCard(
-    username: string,
+    userName: string,
     data: CreditCard,
   ): Promise<Customer> {
     const options = { upsert: true };
     return await this.model.findOneAndUpdate(
-      { username },
+      { userName },
       {
         $set: {
           card: data,

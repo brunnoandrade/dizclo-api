@@ -23,11 +23,11 @@ import { PartnerViewService } from 'src/modules/backoffice/services/partner/view
 export class PartnerViewController {
   constructor(private readonly service: PartnerViewService) {}
 
-  @Post(':username')
+  @Post(':userName')
   @UseInterceptors(new ValidatorInterceptor(new CreatePartnerViewContract()))
-  async createPet(@Param('username') username, @Body() model: PartnerView) {
+  async createPet(@Param('userName') userName, @Body() model: PartnerView) {
     try {
-      await this.service.create(username, model);
+      await this.service.create(userName, model);
       return new ResultDto(null, true, model, null);
     } catch (error) {
       throw new HttpException(
@@ -37,15 +37,15 @@ export class PartnerViewController {
     }
   }
 
-  @Put(':username/:id')
+  @Put(':userName/:id')
   @UseInterceptors(new ValidatorInterceptor(new UpdatePartnerViewContract()))
   async updatePet(
-    @Param('username') username,
+    @Param('userName') userName,
     @Param('id') id,
     @Body() model: PartnerView,
   ) {
     try {
-      await this.service.update(username, id, model);
+      await this.service.update(userName, id, model);
       return new ResultDto(null, true, model, null);
     } catch (error) {
       throw new HttpException(
