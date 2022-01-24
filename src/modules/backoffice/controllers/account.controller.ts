@@ -65,7 +65,7 @@ export class AccountController {
 
     // Gera o token
     const token = await this.authService.createToken(
-      customer.userName,
+      customer.username,
       customer.email,
       '',
       customer.user.roles,
