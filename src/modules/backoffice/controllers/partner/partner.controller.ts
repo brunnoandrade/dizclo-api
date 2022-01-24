@@ -39,26 +39,26 @@ export class PartnerController {
   @UseInterceptors(new ValidatorInterceptor(new CreatePartnerContract()))
   async post(@Body() model: CreatePartnerDto) {
     try {
-      // const password = await Md5.init(
-      //   `${model.password}${process.env.SALT_KEY}`,
-      // );
-      // const user = await this.accountService.create(
-      //   new User(model.username, password, true, ['partner']),
-      // );
-      // const partner = new Partner(
-      //   model.name,
-      //   model.username,
-      //   model.email,
-      //   null,
-      //   null,
-      //   null,
-      //   null,
-      //   [],
-      //   [],
-      //   user,
-      // );
-      // await this.partnerService.create(partner);
-      // return new ResultDto(null, true, model, null);
+      const password = await Md5.init(
+        `${model.password}${process.env.SALT_KEY}`,
+      );
+      const user = await this.accountService.create(
+        new User(model.username, password, true, ['partner']),
+      );
+      const partner = new Partner(
+        model.name,
+        model.username,
+        model.email,
+        null,
+        null,
+        null,
+        null,
+        [],
+        [],
+        user,
+      );
+      await this.partnerService.create(partner);
+      return new ResultDto(null, true, model, null);
     } catch (error) {
       throw new HttpException(
         new ResultDto(

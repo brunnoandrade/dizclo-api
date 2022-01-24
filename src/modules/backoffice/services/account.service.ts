@@ -41,7 +41,7 @@ export class AccountService {
 
   async findAll(): Promise<User[]> {
     return await this.userModel
-      .find({}, 'username password email active roles')
+      .find({}, 'username password active roles')
       .sort('username')
       .exec();
   }

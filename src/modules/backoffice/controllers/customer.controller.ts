@@ -45,16 +45,15 @@ export class CustomerController {
         `${model.password}${process.env.SALT_KEY}`,
       );
       const user = await this.accountService.create(
-        new User(model.email, model.userName, password, true, ['customer']),
+        new User(model.username, password, true, ['user']),
       );
       const customer = new Customer(
-        model.userName,
-        model.fullName,
-        model.birthday,
-        model.gender,
-        model.phoneNumber,
-        model.document,
+        model.name,
+        model.username,
         model.email,
+        null,
+        null,
+        null,
         user,
       );
       await this.customerService.create(customer);
