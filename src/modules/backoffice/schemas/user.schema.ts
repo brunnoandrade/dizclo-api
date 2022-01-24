@@ -10,6 +10,14 @@ export const UserSchema = new mongoose.Schema(
         unique: true,
       },
     },
+    document: {
+      type: String,
+      required: true,
+      trim: true,
+      index: {
+        unique: true,
+      },
+    },
     userName: {
       type: String,
       required: true,

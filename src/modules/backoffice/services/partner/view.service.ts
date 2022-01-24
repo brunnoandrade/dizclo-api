@@ -8,10 +8,10 @@ import { PartnerView } from 'src/modules/backoffice/models/partner/view';
 export class PartnerViewService {
   constructor(@InjectModel('Partner') private readonly model: Model<Partner>) {}
 
-  async create(username: string, data: PartnerView): Promise<Partner> {
+  async create(userName: string, data: PartnerView): Promise<Partner> {
     const options = { upsert: true, new: true };
     return await this.model.findOneAndUpdate(
-      { username },
+      { userName },
       {
         $push: {
           views: data,
@@ -22,12 +22,12 @@ export class PartnerViewService {
   }
 
   async update(
-    username: string,
+    userName: string,
     id: string,
     data: PartnerView,
   ): Promise<Partner> {
     return await this.model.findOneAndUpdate(
-      { username, 'views._id': id },
+      { userName, 'views._id': id },
       {
         // active: true
         $set: {

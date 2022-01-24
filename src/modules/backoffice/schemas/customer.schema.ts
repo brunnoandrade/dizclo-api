@@ -31,7 +31,7 @@ export const CustomerSchema = new mongoose.Schema({
     required: true,
     trim: true,
   },
-  userName: {
+  document: {
     type: String,
     required: true,
     trim: true,
@@ -39,7 +39,7 @@ export const CustomerSchema = new mongoose.Schema({
       unique: true,
     },
   },
-  document: {
+  userName: {
     type: String,
     required: true,
     trim: true,

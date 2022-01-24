@@ -8,10 +8,10 @@ import { PartnerPhoto } from 'src/modules/backoffice/models/partner/photo';
 export class PartnerPhotoService {
   constructor(@InjectModel('Partner') private readonly model: Model<Partner>) {}
 
-  async create(username: string, data: PartnerPhoto): Promise<Partner> {
+  async create(userName: string, data: PartnerPhoto): Promise<Partner> {
     const options = { upsert: true, new: true };
     return await this.model.findOneAndUpdate(
-      { username },
+      { userName },
       {
         $push: {
           photos: data,
@@ -22,12 +22,12 @@ export class PartnerPhotoService {
   }
 
   async update(
-    username: string,
+    userName: string,
     id: string,
     data: PartnerPhoto,
   ): Promise<Partner> {
     return await this.model.findOneAndUpdate(
-      { username, 'photos._id': id },
+      { userName, 'photos._id': id },
       {
         // active: true
         $set: {

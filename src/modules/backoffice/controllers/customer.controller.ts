@@ -45,7 +45,9 @@ export class CustomerController {
         `${model.password}${process.env.SALT_KEY}`,
       );
       const user = await this.accountService.create(
-        new User(model.email, model.userName, password, true, ['customer']),
+        new User(model.email, model.document, model.userName, password, true, [
+          'customer',
+        ]),
       );
       const customer = new Customer(
         model.userName,
@@ -72,11 +74,11 @@ export class CustomerController {
     }
   }
 
-  @Put(':username')
+  @Put(':userName')
   @UseInterceptors(new ValidatorInterceptor(new UpdateCustomerContract()))
-  async update(@Param('username') username, @Body() model: UpdateCustomerDto) {
+  async update(@Param('userName') userName, @Body() model: UpdateCustomerDto) {
     try {
-      await this.customerService.update(username, model);
+      await this.customerService.update(userName, model);
       return new ResultDto(null, true, model, null);
     } catch (error) {
       throw new HttpException(
@@ -98,9 +100,9 @@ export class CustomerController {
     return new ResultDto(null, true, customers, null);
   }
 
-  @Get(':username')
-  async get(@Param('username') username) {
-    const customer = await this.customerService.find(username);
+  @Get(':userName')
+  async get(@Param('userName') userName) {
+    const customer = await this.customerService.find(userName);
     return new ResultDto(null, true, customer, null);
   }
 
@@ -111,11 +113,11 @@ export class CustomerController {
     return new ResultDto(null, true, customers, null);
   }
 
-  @Post(':username/credit-cards')
+  @Post(':userName/credit-cards')
   @UseInterceptors(new ValidatorInterceptor(new CreateCreditCardContract()))
-  async createBilling(@Param('username') username, @Body() model: CreditCard) {
+  async createBilling(@Param('userName') userName, @Body() model: CreditCard) {
     try {
-      await this.customerService.saveOrUpdateCreditCard(username, model);
+      await this.customerService.saveOrUpdateCreditCard(userName, model);
       return new ResultDto(null, true, model, null);
     } catch (error) {
       throw new HttpException(

@@ -11,7 +11,7 @@ export class UpdatePartnerContract implements Contract {
     const flunt = new Flunt();
 
     flunt.hasMinLen(model.name, 5, 'Nome inválido');
-    flunt.hasMinLen(model.username, 3, 'Usuário inválido');
+    flunt.hasMinLen(model.userName, 3, 'Usuário inválido');
     flunt.isEmail(model.email, 'E-mail inválido');
     flunt.hasMinLen(model.avatar, 1, 'Avatar inválido');
     flunt.hasMinLen(model.latitude, 3, 'Latitude inválida');

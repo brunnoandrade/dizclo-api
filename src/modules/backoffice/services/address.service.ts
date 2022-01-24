@@ -13,14 +13,14 @@ export class AddressService {
   ) {}
 
   async create(
-    username: string,
+    userName: string,
     data: Address,
     type: AddressType,
   ): Promise<Customer> {
     const options = { upsert: true };
     if (type === AddressType.Billing) {
       return await this.model.findOneAndUpdate(
-        { username },
+        { userName },
         {
           $set: {
             billingAddress: data,
@@ -30,7 +30,7 @@ export class AddressService {
       );
     } else {
       return await this.model.findOneAndUpdate(
-        { username },
+        { userName },
         {
           $set: {
             shippingAddress: data,

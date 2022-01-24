@@ -6,21 +6,17 @@ export const PartnerSchema = new mongoose.Schema({
     required: true,
     trim: true,
   },
-  username: {
+  userName: {
     type: String,
     required: true,
     trim: true,
-    index: {
-      unique: true,
-    },
+    unique: true,
   },
   email: {
     type: String,
     required: true,
     trim: true,
-    index: {
-      unique: true,
-    },
+    unique: true,
   },
   avatar: {
     type: String,

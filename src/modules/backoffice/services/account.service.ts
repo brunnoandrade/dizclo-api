@@ -17,17 +17,17 @@ export class AccountService {
     return await user.save();
   }
 
-  async findByUsername(username): Promise<User> {
-    return await this.userModel.findOne({ username: username }).exec();
+  async findByuserName(userName): Promise<User> {
+    return await this.userModel.findOne({ userName: userName }).exec();
   }
 
-  async update(username: string, data: any): Promise<User> {
-    return await this.userModel.findOneAndUpdate({ username }, data);
+  async update(userName: string, data: any): Promise<User> {
+    return await this.userModel.findOneAndUpdate({ userName }, data);
   }
 
-  async authenticate(username, password): Promise<Customer> {
+  async authenticate(userName, password): Promise<Customer> {
     const customer = await this.customerModel
-      .findOne({ username: username })
+      .findOne({ userName: userName })
       .populate('user')
       .exec();
 
@@ -41,8 +41,8 @@ export class AccountService {
 
   async findAll(): Promise<User[]> {
     return await this.userModel
-      .find({}, 'username password email active roles')
-      .sort('username')
+      .find({}, 'userName password email active roles')
+      .sort('userName')
       .exec();
   }
 }
