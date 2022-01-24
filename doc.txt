@@ -1,8 +1,16 @@
+#FAQ
+- BUSCAR FAQs
+- CRIAR FAQ
+- ATUALIZAR FAQ
+- DELETAR FAQ
+
 #USUÁRIOS
+- BUSCAR PARCEIROS (bares, restaurantes, festas, eventos etc...)
+- FAVORITAR PARCEIROS
 - PERFIL
-- BUSCAR PACEIROS (bares, restaurantes, festas, eventos etc...)
-- FAVORITAR PACEIROS
-- SEGUIR PACEIROS
+-- Perfil (userName, fullName, birthday, gender, phoneNumber, document, email)
+-- Editar (fullName, birthday, gender, phoneNumber)
+# - SEGUIR PACEIROS
 
 #PARCEIROS
 - PERFIL
