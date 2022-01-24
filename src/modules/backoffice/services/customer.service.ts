@@ -23,14 +23,14 @@ export class CustomerService {
 
   async findAll(): Promise<Customer[]> {
     return await this.model
-      .find({}, 'name email username') //'-name'
-      .sort('name') //'-name' decrescente
+      .find({}, 'fullName document birthday gender email phoneNumber') //'-name'
+      .sort('fullName') //'-name' decrescente
       .exec();
   }
 
   async find(username): Promise<Customer[]> {
     return await this.model
-      .find({ username }) // .find({ username }, 'name email username')
+      .find({ username }, '-__v') // .find({ username }, 'name email username')
       .populate('user', 'username')
       .exec();
   }
