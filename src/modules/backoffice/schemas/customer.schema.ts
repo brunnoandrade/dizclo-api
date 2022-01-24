@@ -1,12 +1,45 @@
 import * as mongoose from 'mongoose';
 
+// public userName: string,
+// public fullName: string,
+// public birthday: string,
+// public gender: string[],
+// public phoneNumber: string,
+// public document: string,
+// public email: string,
+
 export const CustomerSchema = new mongoose.Schema({
-  name: {
+  fullName: {
     type: String,
     required: true,
     trim: true,
   },
-  username: {
+  birthday: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  gender: [
+    {
+      type: String,
+      required: true,
+      enum: ['M', 'F'],
+    },
+  ],
+  phoneNumber: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  userName: {
+    type: String,
+    required: true,
+    trim: true,
+    index: {
+      unique: true,
+    },
+  },
+  document: {
     type: String,
     required: true,
     trim: true,
@@ -20,89 +53,6 @@ export const CustomerSchema = new mongoose.Schema({
     trim: true,
     index: {
       unique: true,
-    },
-  },
-  pets: [
-    {
-      id: {
-        type: String,
-      },
-      name: {
-        type: String,
-      },
-      gender: {
-        type: String,
-        enum: ['male', 'female', 'none'],
-      },
-      kind: {
-        type: String,
-      },
-      brand: {
-        type: String,
-      },
-    },
-  ],
-  billingAddress: {
-    zipcode: {
-      type: String,
-    },
-    street: {
-      type: String,
-    },
-    number: {
-      type: String,
-    },
-    complement: {
-      type: String,
-    },
-    neighborhood: {
-      type: String,
-    },
-    city: {
-      type: String,
-    },
-    state: {
-      type: String,
-    },
-    country: {
-      type: String,
-    },
-  },
-  shippingAddress: {
-    zipcode: {
-      type: String,
-    },
-    street: {
-      type: String,
-    },
-    number: {
-      type: String,
-    },
-    complement: {
-      type: String,
-    },
-    neighborhood: {
-      type: String,
-    },
-    city: {
-      type: String,
-    },
-    state: {
-      type: String,
-    },
-    country: {
-      type: String,
-    },
-  },
-  card: {
-    number: {
-      type: String,
-    },
-    holder: {
-      type: String,
-    },
-    expiration: {
-      type: String,
     },
   },
   user: {

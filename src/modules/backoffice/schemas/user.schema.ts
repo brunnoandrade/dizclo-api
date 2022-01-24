@@ -2,7 +2,15 @@ import * as mongoose from 'mongoose';
 
 export const UserSchema = new mongoose.Schema(
   {
-    username: {
+    email: {
+      type: String,
+      required: true,
+      trim: true,
+      index: {
+        unique: true,
+      },
+    },
+    userName: {
       type: String,
       required: true,
       trim: true,
@@ -19,8 +27,8 @@ export const UserSchema = new mongoose.Schema(
       {
         type: String,
         required: true,
-        enum: ['user', 'partner', 'admin'],
-        default: 'user',
+        enum: ['customer', 'partner', 'admin'],
+        default: 'customer',
       },
     ],
     active: {
