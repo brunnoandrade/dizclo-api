@@ -10,7 +10,10 @@ export class UpdateCustomerContract implements Contract {
   validate(model: UpdateCustomerDto): boolean {
     const flunt = new Flunt();
 
-    flunt.hasMinLen(model.name, 5, 'Nome inválido');
+    flunt.hasMinLen(model.fullName, 3, 'Nome completo inválido');
+    flunt.hasMinLen(model.birthday, 10, 'Data de aniversário inválida');
+    flunt.hasMinLen(model.gender, 1, 'Genêro inválido');
+    flunt.hasMinLen(model.phoneNumber, 10, 'Número de telefone inválido');
 
     this.errors = flunt.errors;
     return flunt.isValid();
