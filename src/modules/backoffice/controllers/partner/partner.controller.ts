@@ -39,26 +39,26 @@ export class PartnerController {
   @UseInterceptors(new ValidatorInterceptor(new CreatePartnerContract()))
   async post(@Body() model: CreatePartnerDto) {
     try {
-      // const password = await Md5.init(
-      //   `${model.password}${process.env.SALT_KEY}`,
-      // );
-      // const user = await this.accountService.create(
-      //   new User(model.userName, password, true, ['partner']),
-      // );
-      // const partner = new Partner(
-      //   model.name,
-      //   model.userName,
-      //   model.email,
-      //   null,
-      //   null,
-      //   null,
-      //   null,
-      //   [],
-      //   [],
-      //   user,
-      // );
-      // await this.partnerService.create(partner);
-      // return new ResultDto(null, true, model, null);
+      const password = await Md5.init(
+        `${model.password}${process.env.SALT_KEY}`,
+      );
+      const user = await this.accountService.create(
+        new User(model.email, model.document, model.userName, password, true, [
+          'partner',
+        ]),
+      );
+      const partner = new Partner(
+        model.userName,
+        model.fullName,
+        model.birthday,
+        model.gender,
+        model.phoneNumber,
+        model.document,
+        model.email,
+        user,
+      );
+      await this.partnerService.create(partner);
+      return new ResultDto(null, true, model, null);
     } catch (error) {
       throw new HttpException(
         new ResultDto(
@@ -94,20 +94,20 @@ export class PartnerController {
   @Get()
   @UseInterceptors(CacheInterceptor)
   async getAll() {
-    const partners = await this.partnerService.findAll();
-    return new ResultDto(null, true, partners, null);
+    const data = await this.partnerService.findAll();
+    return new ResultDto(null, true, data, null);
   }
 
   @Get(':userName')
   async get(@Param('userName') userName) {
-    const partner = await this.partnerService.find(userName);
-    return new ResultDto(null, true, partner, null);
+    const data = await this.partnerService.find(userName);
+    return new ResultDto(null, true, data, null);
   }
 
   @Post('query')
   @UseInterceptors(new ValidatorInterceptor(new QueryContract()))
   async query(@Body() model: QueryDto) {
-    const partners = await this.partnerService.query(model);
-    return new ResultDto(null, true, partners, null);
+    const data = await this.partnerService.query(model);
+    return new ResultDto(null, true, data, null);
   }
 }

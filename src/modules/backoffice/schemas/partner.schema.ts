@@ -1,66 +1,52 @@
 import * as mongoose from 'mongoose';
 
 export const PartnerSchema = new mongoose.Schema({
-  name: {
+  fullName: {
     type: String,
     required: true,
     trim: true,
+  },
+  birthday: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  gender: [
+    {
+      type: String,
+      required: true,
+      enum: ['M', 'F'],
+    },
+  ],
+  phoneNumber: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  document: {
+    type: String,
+    required: true,
+    trim: true,
+    index: {
+      unique: true,
+    },
   },
   userName: {
     type: String,
     required: true,
     trim: true,
-    unique: true,
+    index: {
+      unique: true,
+    },
   },
   email: {
     type: String,
     required: true,
     trim: true,
-    unique: true,
-  },
-  avatar: {
-    type: String,
-    trim: true,
-  },
-  stars: {
-    type: Number,
-    trim: true,
-  },
-  latitude: {
-    type: String,
-    trim: true,
-  },
-  longitude: {
-    type: String,
-    trim: true,
-  },
-  photos: [
-    {
-      url: {
-        type: String,
-      },
+    index: {
+      unique: true,
     },
-  ],
-  views: [
-    {
-      rate: {
-        type: Number,
-      },
-    },
-  ],
-  testmonials: [
-    {
-      name: {
-        type: String,
-      },
-      rate: {
-        type: Number,
-      },
-      body: {
-        type: String,
-      },
-    },
-  ],
+  },
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
