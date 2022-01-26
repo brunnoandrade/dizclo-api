@@ -1,6 +1,4 @@
-// import { Address } from './address.model';
-// import { CreditCard } from './credit-card.model';
-import { User } from './user.model';
+import { User } from 'src/modules/backoffice/models/user.model';
 
 export class Customer {
   constructor(
@@ -11,9 +9,6 @@ export class Customer {
     public phoneNumber: string,
     public document: string,
     public email: string,
-    // public billingAddress: Address,
-    // public shippingAddress: Address,
-    // public creditCard: CreditCard,
     public user: User,
   ) {}
 }

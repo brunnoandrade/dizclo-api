@@ -2,7 +2,6 @@ import { Model } from 'mongoose';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Customer } from 'src/modules/backoffice/models/customer.model';
-import { CreditCard } from 'src/modules/backoffice/models/credit-card.model';
 import { QueryDto } from 'src/modules/backoffice/dtos/query.dto';
 import { UpdateCustomerDto } from 'src/modules/backoffice/dtos/customer/update-customer.dto';
 
@@ -13,8 +12,8 @@ export class CustomerService {
   ) {}
 
   async create(data: Customer): Promise<Customer> {
-    const customer = new this.model(data);
-    return await customer.save();
+    const payload = new this.model(data);
+    return await payload.save();
   }
 
   async update(userName: string, data: UpdateCustomerDto): Promise<Customer> {
@@ -23,14 +22,14 @@ export class CustomerService {
 
   async findAll(): Promise<Customer[]> {
     return await this.model
-      .find({}, 'fullName document birthday gender email phoneNumber') //'-name'
-      .sort('fullName') //'-name' decrescente
+      .find({}, 'fullName document birthday gender email phoneNumber')
+      .sort('fullName')
       .exec();
   }
 
   async find(userName): Promise<Customer[]> {
     return await this.model
-      .find({ userName }, '-__v') // .find({ userName }, 'name email userName')
+      .find({ userName }, '-__v')
       .populate('user', 'userName')
       .exec();
   }
@@ -43,21 +42,5 @@ export class CustomerService {
       })
       .sort(model.sort)
       .exec();
-  }
-
-  async saveOrUpdateCreditCard(
-    userName: string,
-    data: CreditCard,
-  ): Promise<Customer> {
-    const options = { upsert: true };
-    return await this.model.findOneAndUpdate(
-      { userName },
-      {
-        $set: {
-          card: data,
-        },
-      },
-      options,
-    );
   }
 }

@@ -10,12 +10,10 @@ export class UpdatePartnerContract implements Contract {
   validate(model: UpdatePartnerDto): boolean {
     const flunt = new Flunt();
 
-    flunt.hasMinLen(model.name, 5, 'Nome inválido');
-    flunt.hasMinLen(model.userName, 3, 'Usuário inválido');
-    flunt.isEmail(model.email, 'E-mail inválido');
-    flunt.hasMinLen(model.avatar, 1, 'Avatar inválido');
-    flunt.hasMinLen(model.latitude, 3, 'Latitude inválida');
-    flunt.hasMinLen(model.longitude, 3, 'Longitude inválida');
+    flunt.hasMinLen(model.fullName, 3, 'Nome completo inválido');
+    flunt.hasMinLen(model.birthday, 10, 'Data de aniversário inválida');
+    flunt.hasMinLen(model.gender, 1, 'Genêro inválido');
+    flunt.hasMinLen(model.phoneNumber, 10, 'Número de telefone inválido');
 
     this.errors = flunt.errors;
     return flunt.isValid();

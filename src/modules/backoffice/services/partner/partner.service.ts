@@ -10,8 +10,8 @@ export class PartnerService {
   constructor(@InjectModel('Partner') private readonly model: Model<Partner>) {}
 
   async create(data: Partner): Promise<Partner> {
-    const partner = new this.model(data);
-    return await partner.save();
+    const payload = new this.model(data);
+    return await payload.save();
   }
 
   async update(userName: string, data: UpdatePartnerDto): Promise<Partner> {
@@ -20,14 +20,14 @@ export class PartnerService {
 
   async findAll(): Promise<Partner[]> {
     return await this.model
-      .find({}, 'name userName email photos views')
-      .sort('name')
+      .find({}, 'fullName document birthday gender email phoneNumber')
+      .sort('fullName')
       .exec();
   }
 
   async find(userName): Promise<Partner[]> {
     return await this.model
-      .find({ userName })
+      .find({ userName }, '-__v')
       .populate('user', 'userName')
       .exec();
   }

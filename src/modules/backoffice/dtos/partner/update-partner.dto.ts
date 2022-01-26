@@ -1,11 +1,8 @@
 export class UpdatePartnerDto {
   constructor(
-    public name: string,
-    public userName: string,
-    public email: string,
-    public avatar: string,
-    public stars: number,
-    public latitude: string,
-    public longitude: string,
+    public fullName: string,
+    public birthday: string,
+    public gender: string[],
+    public phoneNumber: string,
   ) {}
 }
