@@ -1,13 +1,5 @@
 import * as mongoose from 'mongoose';
 
-// public userName: string,
-// public fullName: string,
-// public birthday: string,
-// public gender: string[],
-// public phoneNumber: string,
-// public document: string,
-// public email: string,
-
 export const CustomerSchema = new mongoose.Schema({
   fullName: {
     type: String,

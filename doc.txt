@@ -8,12 +8,13 @@
 - BUSCAR PARCEIROS (bares, restaurantes, festas, eventos etc...)
 - FAVORITAR PARCEIROS
 - PERFIL
--- Perfil (userName, fullName, birthday, gender, phoneNumber, document, email)
+-- Criar  (userName*, document*, email*, fullName, birthday, gender, phoneNumber)
 -- Editar (fullName, birthday, gender, phoneNumber)
-# - SEGUIR PACEIROS
 
 #PARCEIROS
 - PERFIL
+-- Criar  (userName*, document*, email*, fullName, birthday, gender, phoneNumber)
+-- Editar (fullName, birthday, gender, phoneNumber)
 - FOTOS
 - NOTAS
 - SERVIÇOS

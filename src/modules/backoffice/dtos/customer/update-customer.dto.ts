@@ -1,3 +1,8 @@
 export class UpdateCustomerDto {
-  constructor(public name: string) {}
+  constructor(
+    public fullName: string,
+    public birthday: string,
+    public gender: string[],
+    public phoneNumber: string,
+  ) {}
 }
